@@ -1,3 +1,4 @@
+
 # From Tap-to-Connect to WireGuard Handshake: Building a Production VPN Flow on Android
 
 *By Md Hadiuzzaman · Software Engineer · Android | iOS | TV App Development*
@@ -6,15 +7,7 @@ Most VPN tutorials stop at "call `VpnService` and you're done." Real VPN apps ar
 
 This post walks through the complete connect/disconnect sequence of **AnyVPN**, a production WireGuard-based Android VPN built with Jetpack Compose and clean architecture. Every snippet is real code from the app, and the complete interactive connection-flow diagram is available in the docs: **[VPN Connection Flow — Sequence Diagram](https://hadiuzzaman524.github.io/vpn-android/index.html)**. The flow follows this sequence:
 
-```
-┌──────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────────────────┐   ┌──────────────────────┐   ┌────────────────────┐
-│    UI    │   │     VM      │   │     VC      │   │         FS          │   │          CM          │   │         WG         │
-│  Home ·  │──▶│VPNViewModel │──▶│VpnController│──▶│VpnForegroundService │──▶│ VpnConnectionManager │──▶│ WireGuard GoBackend│
-│ Compose  │   └─────────────┘   └─────────────┘   └─────────────────────┘   └──────────────────────┘   └────────────────────┘
-└──────────┘         ▲                                                                  │
-     ▲               └────────────── State / Traffic emitted via StateFlow ◀────────────┘
-     └────────────────────── UI recomposes · speed, map, timer
-```
+<img width="1800" height="874" alt="VPN App Architecture Flow Diagram" src="https://github.com/user-attachments/assets/4fbd071a-e233-4cbb-b02a-a251b0705309" />
 
 Six actors, four phases:
 
